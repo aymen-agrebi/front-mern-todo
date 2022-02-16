@@ -1,0 +1,19 @@
+.Todo {
+  background: rgb(8, 8, 8);
+  border-radius: 20px;
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+.Todo ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+}
+.Todo form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+}
