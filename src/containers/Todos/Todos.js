@@ -3,13 +3,15 @@ import Backdrop from "../../components/Backdrop/Backdrop";
 import Todo from "../../components/Todo/Todo";
 import TodoForm from "../../components/TodoForm/TodoForm";
 import classes from "./Todos.module.css";
+import env from "react-dotenv";
 
 const Todos = () => {
   const [todos, setTodos] = useState([]);
   const [showForm, setShowForm] = useState(false);
-
+  const port = "http://localhost:3000";
+  //
   useEffect(() => {
-    fetch("http://localhost:3000/api/todos")
+    fetch(`${port}/api/todos`)
       .then((response) => response.json())
       .then((responseData) => {
         setTodos(responseData.todos);
@@ -20,7 +22,7 @@ const Todos = () => {
     setShowForm(!showForm);
   };
   const addTodo = (todo) => {
-    fetch("http://localhost:3000/api/todos", {
+    fetch(`${port}/api/todos`, {
       method: "POST",
       body: JSON.stringify(todo),
       headers: { "Content-Type": "application/json" },
@@ -34,7 +36,7 @@ const Todos = () => {
   };
 
   const removeTodo = (id) => {
-    fetch(`http://localhost:3000/api/todos/${id}`, {
+    fetch(port + `/api/todos/${id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     })
@@ -49,7 +51,7 @@ const Todos = () => {
   const updateTodoHandler = (todo) => {
     console.log(todo);
     const id = todo._id;
-    fetch(`http://localhost:3000/api/todos/${id}`, {
+    fetch(port + `/api/todos/${id}`, {
       method: "PUT",
       body: JSON.stringify(todo),
       headers: { "Content-Type": "application/json" },
